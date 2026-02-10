@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const GEMINI_URL =
-  'https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent';
+  'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent';
 
 const askAI = async (question) => {
   try {
@@ -40,10 +40,12 @@ const askAI = async (question) => {
       error.response?.data || error.message
     );
 
-    throw {
-      status: 502,
-      message: 'AI service unavailable'
-    };
+    console.error(error.response?.data);
+
+    // throw {
+    //   status: 502,
+    //   message: 'AI service unavailable'
+    // };
   }
 };
 
